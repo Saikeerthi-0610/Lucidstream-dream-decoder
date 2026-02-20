@@ -1,0 +1,448 @@
+/* ========================================
+   SIGNUP - NEURAL ONBOARDING LAB
+   ======================================== */
+
+/* Import login animations */
+@import './login.css';
+
+/* Container */
+.signup-container-neural {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #0a0e1a;
+}
+
+/* Split Layout */
+.signup-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  width: 100%;
+  gap: 60px;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Visual Side */
+.signup-visual-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Onboarding Steps */
+.onboarding-steps {
+  display: flex;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(76, 201, 240, 0.1);
+  border: 2px solid rgba(76, 201, 240, 0.3);
+  border-radius: 50%;
+  color: #4cc9f0;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.step-item.active .step-number {
+  background: rgba(76, 201, 240, 0.2);
+  border-color: #4cc9f0;
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.4);
+}
+
+.step-item span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.step-item.active span {
+  color: #ffffff;
+}
+
+/* Onboarding Step */
+.onboarding-step {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.step-header svg {
+  color: #4cc9f0;
+  margin-bottom: 16px;
+}
+
+.step-header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.step-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+}
+
+/* Intent Grid */
+.intent-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.intent-card {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.intent-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.intent-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.intent-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.intent-card p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Archetype Grid */
+.archetype-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.archetype-card {
+  padding: 32px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.archetype-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.archetype-card:hover::before {
+  opacity: 1;
+}
+
+.archetype-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.archetype-emoji {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.archetype-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Privacy Toggle */
+.privacy-toggle-section {
+  margin-bottom: 24px;
+}
+
+.privacy-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.privacy-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(76, 201, 240, 0.3);
+}
+
+.privacy-toggle-btn.active {
+  border-color: #4cc9f0;
+  background: rgba(76, 201, 240, 0.1);
+}
+
+.privacy-toggle-btn svg {
+  color: #4cc9f0;
+  flex-shrink: 0;
+}
+
+.privacy-toggle-btn div {
+  flex: 1;
+}
+
+.privacy-toggle-btn strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.privacy-toggle-btn p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.toggle-switch {
+  width: 48px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch.on {
+  background: #4cc9f0;
+}
+
+.toggle-slider {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s ease;
+}
+
+.toggle-switch.on .toggle-slider {
+  left: 26px;
+}
+
+/* Anonymous Section */
+.anonymous-section {
+  margin-bottom: 24px;
+}
+
+.anonymous-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(123, 47, 247, 0.1);
+  border: 2px solid rgba(123, 47, 247, 0.3);
+  border-radius: 12px;
+  color: #7b2ff7;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.anonymous-btn:hover {
+  background: rgba(123, 47, 247, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Checkbox */
+.checkbox-neural {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.checkbox-neural input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.checkbox-neural input[type="checkbox"]:checked + .checkbox-custom {
+  background: #4cc9f0;
+  border-color: #4cc9f0;
+}
+
+.checkbox-neural input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.checkbox-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.checkbox-label a {
+  color: #4cc9f0;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.checkbox-label a:hover {
+  color: #7b2ff7;
+}
+
+/* Back Button */
+.back-btn-neural {
+  width: 100%;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  margin-top: 16px;
+}
+
+.back-btn-neural:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  transform: translateX(-4px);
+}
+
+/* Login Link */
+.login-link-neural {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.login-link-neural a {
+  color: #4cc9f0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.login-link-neural a:hover {
+  color: #7b2ff7;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .signup-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .signup-visual-side {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .signup-split-layout {
+    padding: 20px;
+  }
+  
+  .glass-card-neural {
+    padding: 32px 24px;
+  }
+  
+  .onboarding-steps {
+    gap: 16px;
+  }
+  
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+}

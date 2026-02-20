@@ -1,0 +1,38 @@
+/* ===== APP ROOT ===== */
+.app-root {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0b1024, #050714);
+  color: white;
+}
+
+/* ===== HEADER ===== */
+.top-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 22px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-center {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+
+.nav-center a {
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav-center a:hover {
+  color: white;
+}
+
+/* ===== PAGE CONTAINER ===== */
+.page-container {
+  padding-top: 40px;
+}

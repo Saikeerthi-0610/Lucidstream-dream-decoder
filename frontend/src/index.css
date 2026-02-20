@@ -1,0 +1,76 @@
+/* RESET EVERYTHING THAT CAN DRAW A LINE */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+}
+
+/* ROOT */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.92);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* HTML & BODY — KILL THE LINE SOURCE */
+html,
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: #0a0e27;
+  color: white;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: block;
+  background: #0a0e27;
+}
+
+/* REMOVE ANY STRAY HR */
+hr {
+  display: none !important;
+}
+
+/* LINKS */
+a {
+  font-weight: 500;
+  color: #9aa2ff;
+  text-decoration: none;
+}
+a:hover {
+  color: #c7caff;
+}
+
+/* BUTTONS */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+/* NUCLEAR OPTION — REMOVE ALL 1PX LINES */
+hr {
+  display: none !important;
+}
+
+div {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* REMOVE ALL FLOATING SEAMS */
+*::before,
+*::after {
+  border: none !important;
+  box-shadow: none !important;
+}

@@ -1,0 +1,187 @@
+.emotional-valence-map {
+  background: linear-gradient(135deg, rgba(20, 22, 38, 0.9), rgba(30, 32, 48, 0.9));
+  border: 2px solid rgba(123, 47, 247, 0.3);
+  border-radius: 24px;
+  padding: 32px;
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  margin-top: 32px;
+}
+
+.valence-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 24px;
+}
+
+.valence-title h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #7b2ff7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 8px 0;
+}
+
+.valence-title p {
+  color: #8892b0;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.dominant-emotion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  border: 2px solid;
+  min-width: 180px;
+  text-align: center;
+}
+
+.emotion-label {
+  font-size: 0.85rem;
+  color: #8892b0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.emotion-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-shadow: 0 2px 12px currentColor;
+}
+
+.valence-chart {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.emotion-breakdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.emotion-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.emotion-stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(76, 201, 240, 0.3);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #8892b0;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.valence-insights {
+  background: rgba(76, 201, 240, 0.05);
+  border: 1px solid rgba(76, 201, 240, 0.2);
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.valence-insights h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #4cc9f0;
+  margin: 0 0 16px 0;
+}
+
+.valence-insights ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.valence-insights li {
+  color: #cbd5f5;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding-left: 24px;
+  position: relative;
+}
+
+.valence-insights li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #4cc9f0;
+  font-weight: 700;
+}
+
+.valence-insights strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .emotion-breakdown {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .valence-header {
+    flex-direction: column;
+  }
+  
+  .dominant-emotion {
+    width: 100%;
+  }
+  
+  .emotion-breakdown {
+    grid-template-columns: 1fr;
+  }
+}

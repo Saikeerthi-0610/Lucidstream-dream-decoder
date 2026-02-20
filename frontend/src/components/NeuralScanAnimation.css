@@ -1,0 +1,316 @@
+.neural-scan-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.scan-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brain-scan {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brain-core {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  gap: 4px;
+}
+
+.brain-hemisphere {
+  flex: 1;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  border-radius: 60px 60px 0 0;
+  box-shadow: 
+    0 0 40px rgba(76, 201, 240, 0.6),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.brain-hemisphere::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  right: 20%;
+  bottom: 20%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.brain-hemisphere.left {
+  transform: rotate(-10deg);
+}
+
+.brain-hemisphere.right {
+  transform: rotate(10deg);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.scan-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border: 3px solid #4cc9f0;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #4cc9f0;
+}
+
+.neural-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #4cc9f0, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #4cc9f0;
+  transform: translate(-50%, -50%);
+}
+
+.scan-progress {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-bar-container {
+  flex: 1;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4cc9f0, #7b2ff7, #ff006e);
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(76, 201, 240, 0.5), transparent);
+  filter: blur(8px);
+  animation: glow-sweep 2s ease-in-out infinite;
+}
+
+@keyframes glow-sweep {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.progress-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #4cc9f0;
+  text-shadow: 0 0 20px #4cc9f0;
+  min-width: 60px;
+  text-align: right;
+}
+
+.scan-stage {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: rgba(20, 22, 38, 0.9);
+  border: 2px solid rgba(76, 201, 240, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.stage-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-dot {
+  width: 12px;
+  height: 12px;
+  background: #4cc9f0;
+  border-radius: 50%;
+  box-shadow: 0 0 16px #4cc9f0;
+}
+
+.stage-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.wave-indicators {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wave-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  opacity: 0.3;
+  transition: all 0.5s ease;
+}
+
+.wave-indicator.active {
+  opacity: 1;
+  border-color: #4cc9f0;
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
+}
+
+.wave-dot {
+  width: 10px;
+  height: 10px;
+  background: #4cc9f0;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #4cc9f0;
+}
+
+.wave-indicator span {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.scan-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #4cc9f0, transparent);
+  box-shadow: 0 0 10px #4cc9f0;
+  opacity: 0.5;
+}
+
+.scan-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.scan-footer p {
+  font-size: 1.1rem;
+  color: #cbd5f5;
+  margin: 0;
+  animation: fade-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fade-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .scan-container {
+    max-width: 400px;
+  }
+  
+  .brain-scan {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .brain-core {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .wave-indicators {
+    right: 10px;
+    gap: 12px;
+  }
+  
+  .wave-indicator {
+    padding: 8px 12px;
+  }
+  
+  .wave-indicator span {
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,9 @@
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
+
+.animated-stars {
+  background: url("/bg-stars.png") repeat;
+  animation: moveStars 200s linear infinite;
+}

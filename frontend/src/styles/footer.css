@@ -1,0 +1,30 @@
+.app-footer {
+  margin-top: 40px;
+  padding: 32px 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #b7bcde;
+}
+
+.footer-links {
+  display: inline-flex;
+  gap: 18px;
+}
+
+.footer-links a {
+  color: #9aa2ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: #c7caff;
+}

@@ -1,0 +1,92 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:0.3" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Glow effect background -->
+  <circle cx="100" cy="100" r="85" fill="url(#glowGradient)" opacity="0.3" filter="url(#glow)"/>
+  
+  <!-- Brain outline -->
+  <path d="M100 30 C120 30 135 40 140 55 C145 50 155 48 162 52 C170 57 173 68 170 78 C175 82 178 90 178 98 C178 108 173 116 165 120 C168 128 165 138 158 143 C152 147 143 147 137 143 C135 150 128 155 120 157 C115 165 105 170 95 170 C85 170 75 165 70 157 C62 155 55 150 53 143 C47 147 38 147 32 143 C25 138 22 128 25 120 C17 116 12 108 12 98 C12 90 15 82 20 78 C17 68 20 57 28 52 C35 48 45 50 50 55 C55 40 70 30 85 30 C90 30 95 30 100 30 Z" 
+        fill="url(#brainGradient)" 
+        stroke="url(#brainGradient)" 
+        stroke-width="2"
+        filter="url(#glow)"/>
+  
+  <!-- Brain details - left hemisphere -->
+  <path d="M60 70 Q65 75 60 80 Q55 85 50 80 Q45 75 50 70 Q55 65 60 70 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <path d="M70 90 Q75 95 70 100 Q65 105 60 100 Q55 95 60 90 Q65 85 70 90 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <path d="M55 110 Q60 115 55 120 Q50 125 45 120 Q40 115 45 110 Q50 105 55 110 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <!-- Brain details - right hemisphere -->
+  <path d="M140 70 Q135 75 140 80 Q145 85 150 80 Q155 75 150 70 Q145 65 140 70 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <path d="M130 90 Q125 95 130 100 Q135 105 140 100 Q145 95 140 90 Q135 85 130 90 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <path d="M145 110 Q140 115 145 120 Q150 125 155 120 Q160 115 155 110 Q150 105 145 110 Z" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.4)" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <!-- Central connection -->
+  <path d="M90 100 Q95 105 100 100 Q105 95 110 100" 
+        fill="none" 
+        stroke="rgba(255,255,255,0.5)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Neural connections -->
+  <circle cx="75" cy="80" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="125" cy="80" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="1;0.6;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="100" cy="95" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="65" cy="115" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="1;0.6;1" dur="2.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="135" cy="115" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+</svg>

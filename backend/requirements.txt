@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+numpy
+scipy
+scikit-learn
+python-multipart
+sqlalchemy
+pyjwt
+email-validator
+httpx
+python-dotenv
+pymongo
+motor
+dnspython

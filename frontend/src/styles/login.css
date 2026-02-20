@@ -1,0 +1,543 @@
+/* ========================================
+   LOGIN - NEURAL SIGNATURE AUTHENTICATION
+   ======================================== */
+
+/* Animations */
+@keyframes neuralPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes scanRing {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes vaultOpen {
+  0% { transform: scale(1) rotateY(0deg); opacity: 1; }
+  100% { transform: scale(1.2) rotateY(90deg); opacity: 0; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes brainNebula {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.1) rotate(180deg); opacity: 0.5; }
+}
+
+@keyframes btnShine {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+@keyframes neuralSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Container */
+.login-container-neural {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #0a0e1a;
+}
+
+.login-container-neural.glitch-effect {
+  animation: glitch 0.3s ease-in-out;
+}
+
+/* Synapse Canvas */
+.synapse-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Video Background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.brain-nebula-animation {
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(76, 201, 240, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(123, 47, 247, 0.15) 0%, transparent 50%);
+  animation: brainNebula 20s ease-in-out infinite;
+}
+
+/* Split Layout */
+.login-split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  width: 100%;
+  gap: 60px;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Visual Side */
+.login-visual-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.neural-logo-large {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.brain-icon-large {
+  color: #4cc9f0;
+  filter: drop-shadow(0 0 30px rgba(76, 201, 240, 0.6));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.neural-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border: 2px solid #4cc9f0;
+  border-radius: 50%;
+  animation: neuralPulse 3s ease-out infinite;
+}
+
+.neural-pulse-ring.delay-1 {
+  animation-delay: 1s;
+}
+
+.neural-pulse-ring.delay-2 {
+  animation-delay: 2s;
+}
+
+.visual-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.visual-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 400px;
+}
+
+/* Form Side */
+.login-form-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.glass-card-neural {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card-neural.vault-opening {
+  animation: vaultOpen 1s ease-out forwards;
+}
+
+/* Neural Header */
+.neural-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.neural-scan-indicator {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.neural-scan-indicator svg {
+  color: #4cc9f0;
+}
+
+.neural-scan-indicator svg.scanning {
+  animation: neuralSpin 2s linear infinite;
+}
+
+.scan-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 2px solid #4cc9f0;
+  border-radius: 50%;
+  animation: scanRing 1.5s ease-out infinite;
+}
+
+.neural-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.neural-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Biometric Button */
+.biometric-login-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.biometric-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(76, 201, 240, 0.4);
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.biometric-login-btn:hover .btn-glow {
+  opacity: 1;
+}
+
+/* Divider */
+.divider-neural {
+  text-align: center;
+  margin: 24px 0;
+  position: relative;
+}
+
+.divider-neural::before,
+.divider-neural::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.divider-neural::before { left: 0; }
+.divider-neural::after { right: 0; }
+
+.divider-neural span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+/* Form */
+.neural-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error-neural {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(255, 0, 110, 0.1);
+  border: 1px solid rgba(255, 0, 110, 0.3);
+  border-radius: 10px;
+  color: #ff006e;
+  font-size: 0.9rem;
+}
+
+.input-group-neural {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+}
+
+.input-neural {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.input-neural:focus {
+  outline: none;
+  border-color: #4cc9f0;
+  box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input-neural::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+  color: #4cc9f0;
+}
+
+.forgot-link-neural {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4cc9f0;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.forgot-link-neural:hover {
+  color: #7b2ff7;
+  transform: translateX(4px);
+}
+
+/* Submit Button */
+.submit-btn-neural {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #4cc9f0, #7b2ff7);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submit-btn-neural:hover:not(.loading) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(76, 201, 240, 0.4);
+}
+
+.submit-btn-neural:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: btnShine 3s infinite;
+}
+
+.neural-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: neuralSpin 1s linear infinite;
+}
+
+/* Social Login */
+.social-neural {
+  margin-top: 24px;
+}
+
+.social-label {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.social-buttons-neural {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.social-btn-neural {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-btn-neural:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Signup Link */
+.signup-link-neural {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.signup-link-neural a {
+  color: #4cc9f0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signup-link-neural a:hover {
+  color: #7b2ff7;
+}
+
+/* Status Bar */
+.status-bar-neural {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.status-item svg {
+  color: #2ed573;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .login-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .login-visual-side {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-split-layout {
+    padding: 20px;
+  }
+  
+  .glass-card-neural {
+    padding: 32px 24px;
+  }
+  
+  .status-bar-neural {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
