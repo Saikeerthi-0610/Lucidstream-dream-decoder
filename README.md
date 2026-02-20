@@ -279,7 +279,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email your-email@example.com or open an issue on GitHub.
+For support, email udayagirikeerthi06@gmail.com or open an issue on GitHub.
 
 ## 🗺️ Roadmap
 
@@ -291,5 +291,3 @@ For support, email your-email@example.com or open an issue on GitHub.
 - [ ] Multi-language support
 
 ---
-
-**Made with ❤️ and ☕ by Saikeerthi**
