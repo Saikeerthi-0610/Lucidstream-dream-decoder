@@ -68,8 +68,41 @@ export default function Decode() {
     setImageLoading(true);
     setImageError(null);
     
+    // Demo mode: Generate mock dream image
+    if (import.meta.env.VITE_DEMO_MODE === "true" || !import.meta.env.VITE_API_URL) {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const mockImages = [
+        {
+          success: true,
+          image_url: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=800",
+          prompt: `A ${result.dream} visualization with cosmic elements`,
+          style: "surreal dreamscape"
+        },
+        {
+          success: true,
+          image_url: "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?w=800",
+          prompt: `Abstract representation of ${result.dream}`,
+          style: "ethereal atmosphere"
+        },
+        {
+          success: true,
+          image_url: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800",
+          prompt: `Mystical ${result.dream} scene`,
+          style: "dreamlike quality"
+        }
+      ];
+      
+      const randomImage = mockImages[Math.floor(Math.random() * mockImages.length)];
+      setDreamImage(randomImage);
+      setImageLoading(false);
+      return;
+    }
+    
+    // Real backend mode
     try {
-      const response = await fetch('http://localhost:8000/dream-image/generate', {
+      const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${API_BASE_URL}/dream-image/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

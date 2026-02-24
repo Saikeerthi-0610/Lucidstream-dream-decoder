@@ -34,20 +34,63 @@ export const predictDream = async (file) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     const dreamTypes = [
-      { type: "Lucid Dream", confidence: 89, description: "High alpha wave activity detected during REM phase. Strong indicators of conscious awareness within dream state." },
-      { type: "Nightmare", confidence: 92, description: "Elevated beta waves and rapid pulse detected. Correlated with physiological stress response patterns." },
-      { type: "Deep Sleep", confidence: 85, description: "Dominant delta waves observed. Optimal conditions for memory consolidation and physical restoration." },
-      { type: "REM Dream", confidence: 87, description: "Rapid eye movement with theta wave patterns. Active dream narrative processing detected." },
-      { type: "Prophetic Dream", confidence: 78, description: "Unusual gamma wave synchronization. Enhanced pattern recognition and intuitive processing." }
+      { 
+        type: "Lucid Dream", 
+        confidence: 89, 
+        description: "High alpha wave activity detected during REM phase. Strong indicators of conscious awareness within dream state.",
+        bands: { delta: 0.15, theta: 0.25, alpha: 0.35, beta: 0.18, gamma: 0.07 },
+        probabilities: { "Lucid Dream": 0.89, "REM Dream": 0.06, "Deep Sleep": 0.03, "Nightmare": 0.01, "Prophetic Dream": 0.01 }
+      },
+      { 
+        type: "Nightmare", 
+        confidence: 92, 
+        description: "Elevated beta waves and rapid pulse detected. Correlated with physiological stress response patterns.",
+        bands: { delta: 0.10, theta: 0.15, alpha: 0.20, beta: 0.45, gamma: 0.10 },
+        probabilities: { "Nightmare": 0.92, "REM Dream": 0.04, "Lucid Dream": 0.02, "Deep Sleep": 0.01, "Prophetic Dream": 0.01 }
+      },
+      { 
+        type: "Deep Sleep", 
+        confidence: 85, 
+        description: "Dominant delta waves observed. Optimal conditions for memory consolidation and physical restoration.",
+        bands: { delta: 0.55, theta: 0.20, alpha: 0.10, beta: 0.10, gamma: 0.05 },
+        probabilities: { "Deep Sleep": 0.85, "REM Dream": 0.08, "Lucid Dream": 0.04, "Nightmare": 0.02, "Prophetic Dream": 0.01 }
+      },
+      { 
+        type: "REM Dream", 
+        confidence: 87, 
+        description: "Rapid eye movement with theta wave patterns. Active dream narrative processing detected.",
+        bands: { delta: 0.12, theta: 0.40, alpha: 0.25, beta: 0.15, gamma: 0.08 },
+        probabilities: { "REM Dream": 0.87, "Lucid Dream": 0.07, "Deep Sleep": 0.03, "Nightmare": 0.02, "Prophetic Dream": 0.01 }
+      },
+      { 
+        type: "Prophetic Dream", 
+        confidence: 78, 
+        description: "Unusual gamma wave synchronization. Enhanced pattern recognition and intuitive processing.",
+        bands: { delta: 0.10, theta: 0.20, alpha: 0.25, beta: 0.25, gamma: 0.20 },
+        probabilities: { "Prophetic Dream": 0.78, "Lucid Dream": 0.10, "REM Dream": 0.07, "Deep Sleep": 0.03, "Nightmare": 0.02 }
+      }
     ];
     
     const randomDream = dreamTypes[Math.floor(Math.random() * dreamTypes.length)];
     
+    // Generate mock signal data
+    const generateSignal = () => {
+      const signal = [];
+      for (let i = 0; i < 100; i++) {
+        signal.push(Math.sin(i * 0.1) * 50 + Math.random() * 20);
+      }
+      return signal;
+    };
+    
     return {
       data: {
+        dream: randomDream.type,
         prediction: randomDream.type,
         confidence: randomDream.confidence,
         description: randomDream.description,
+        bands: randomDream.bands,
+        probabilities: randomDream.probabilities,
+        signal: generateSignal(),
         timestamp: new Date().toISOString(),
         demo_mode: true
       }
