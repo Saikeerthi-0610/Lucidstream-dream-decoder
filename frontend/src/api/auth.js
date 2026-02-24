@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const isDemoMode = import.meta.env.VITE_DEMO_MODE === "true" || !import.meta.env.VITE_API_URL;
 
 // Create axios instance with default config
 const authAPI = axios.create({
@@ -23,6 +24,26 @@ authAPI.interceptors.request.use((config) => {
 export const authService = {
   // Sign up new user
   signup: async (userData) => {
+    // Demo mode: Simulate signup
+    if (isDemoMode) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const mockUser = {
+        id: Date.now(),
+        email: userData.email,
+        username: userData.username,
+        created_at: new Date().toISOString()
+      };
+      const mockToken = 'demo_token_' + Date.now();
+      localStorage.setItem('authToken', mockToken);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      return {
+        access_token: mockToken,
+        user: mockUser,
+        demo_mode: true
+      };
+    }
+
+    // Real backend mode
     try {
       console.log('Making signup request to:', `${API_BASE_URL}/auth/signup`);
       console.log('With data:', userData);
@@ -44,7 +65,7 @@ export const authService = {
         throw error.response.data || { detail: error.response.statusText || 'Signup failed' };
       } else if (error.request) {
         // Request made but no response
-        throw { detail: 'Cannot connect to server. Please make sure the backend is running on http://localhost:8000' };
+        throw { detail: 'Cannot connect to server. Please make sure the backend is running on ' + API_BASE_URL };
       } else {
         // Something else happened
         throw { detail: error.message || 'Signup failed' };
@@ -54,6 +75,26 @@ export const authService = {
 
   // Login user
   login: async (credentials) => {
+    // Demo mode: Simulate login
+    if (isDemoMode) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      const mockUser = {
+        id: Date.now(),
+        email: credentials.email,
+        username: credentials.email.split('@')[0],
+        created_at: new Date().toISOString()
+      };
+      const mockToken = 'demo_token_' + Date.now();
+      localStorage.setItem('authToken', mockToken);
+      localStorage.setItem('user', JSON.stringify(mockUser));
+      return {
+        access_token: mockToken,
+        user: mockUser,
+        demo_mode: true
+      };
+    }
+
+    // Real backend mode
     try {
       console.log('Making login request to:', `${API_BASE_URL}/auth/login`);
       console.log('With email:', credentials.email);
@@ -75,7 +116,7 @@ export const authService = {
         throw error.response.data || { detail: error.response.statusText || 'Login failed' };
       } else if (error.request) {
         // Request made but no response
-        throw { detail: 'Cannot connect to server. Please make sure the backend is running on http://localhost:8000' };
+        throw { detail: 'Cannot connect to server. Please make sure the backend is running on ' + API_BASE_URL };
       } else {
         // Something else happened
         throw { detail: error.message || 'Login failed' };

@@ -1,8 +1,14 @@
 import axios from "axios";
 
+// Use environment variable for API URL, fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+// Check if we're in demo mode (no backend available)
+const isDemoMode = import.meta.env.VITE_DEMO_MODE === "true" || !import.meta.env.VITE_API_URL;
+
 // Create axios instance with optimized settings
 const api = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: API_BASE_URL,
   timeout: 15000, // 15 second timeout
   headers: {
     "Content-Type": "application/json",
@@ -22,12 +28,39 @@ api.interceptors.response.use(
 );
 
 export const predictDream = async (file) => {
+  // Demo mode: Return mock prediction data
+  if (isDemoMode) {
+    // Simulate processing delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    const dreamTypes = [
+      { type: "Lucid Dream", confidence: 89, description: "High alpha wave activity detected during REM phase. Strong indicators of conscious awareness within dream state." },
+      { type: "Nightmare", confidence: 92, description: "Elevated beta waves and rapid pulse detected. Correlated with physiological stress response patterns." },
+      { type: "Deep Sleep", confidence: 85, description: "Dominant delta waves observed. Optimal conditions for memory consolidation and physical restoration." },
+      { type: "REM Dream", confidence: 87, description: "Rapid eye movement with theta wave patterns. Active dream narrative processing detected." },
+      { type: "Prophetic Dream", confidence: 78, description: "Unusual gamma wave synchronization. Enhanced pattern recognition and intuitive processing." }
+    ];
+    
+    const randomDream = dreamTypes[Math.floor(Math.random() * dreamTypes.length)];
+    
+    return {
+      data: {
+        prediction: randomDream.type,
+        confidence: randomDream.confidence,
+        description: randomDream.description,
+        timestamp: new Date().toISOString(),
+        demo_mode: true
+      }
+    };
+  }
+
+  // Real backend mode
   const formData = new FormData();
   formData.append("file", file);
 
   try {
     return await axios.post(
-      "http://localhost:8000/predict",
+      `${API_BASE_URL}/predict`,
       formData,
       {
         headers: {
@@ -51,62 +84,102 @@ export const predictDream = async (file) => {
 };
 
 export const getHistory = async () => {
-  try {
-    const response = await api.get("/history/");
-    return response;
-  } catch (error) {
-    console.error('History fetch error:', error);
-    // Return demo data if API fails
+  // Demo mode: Return mock history data
+  if (isDemoMode) {
     return {
       data: [
         {
           id: 1,
           dream: "Exploration of an ancient library beneath the ocean. Strong alpha waves detected during REM phase.",
           confidence: 87,
-          date: "2024-02-03",
-          type: "Water Dream",
+          date: "2024-02-20",
+          type: "Lucid Dream",
           intensity: "HIGH INTENSITY",
           intensityColor: "#ff6b6b"
         },
         {
           id: 2,
+          dream: "Flying through cosmic nebulae with enhanced gamma wave synchronization. Prophetic elements detected.",
+          confidence: 91,
+          date: "2024-02-19",
+          type: "Prophetic Dream",
+          intensity: "EXTREME INTENSITY",
+          intensityColor: "#ff4757"
+        },
+        {
+          id: 3,
           dream: "Standard memory consolidation during deep sleep. Higher theta activity noted in prefrontal cortex.",
           confidence: 73,
-          date: "2024-02-02",
-          type: "REM Stage", 
+          date: "2024-02-18",
+          type: "Deep Sleep", 
           intensity: "MODERATE INTENSITY",
           intensityColor: "#4ecdc4"
         },
         {
-          id: 3,
+          id: 4,
           dream: "Rapid pulse and beta wave spikes. Correlated with physiological stress response patterns.",
           confidence: 92,
-          date: "2024-02-01",
+          date: "2024-02-17",
           type: "Nightmare",
           intensity: "EXTREME INTENSITY",
           intensityColor: "#ff4757"
+        },
+        {
+          id: 5,
+          dream: "Peaceful meadow with gentle theta waves. Optimal relaxation and creativity indicators.",
+          confidence: 85,
+          date: "2024-02-16",
+          type: "REM Dream",
+          intensity: "LOW INTENSITY",
+          intensityColor: "#95e1d3"
         }
       ]
     };
   }
+
+  // Real backend mode
+  try {
+    const response = await api.get("/history/");
+    return response;
+  } catch (error) {
+    console.error('History fetch error:', error);
+    throw error;
+  }
 };
 
 export const getRecentHistory = async () => {
+  // Demo mode: Return mock recent history
+  if (isDemoMode) {
+    return {
+      data: [
+        {
+          id: 1,
+          dream: "Flying through cosmic nebulae - Prophetic Dream",
+          confidence: 91,
+          type: "Prophetic Dream"
+        },
+        {
+          id: 2,
+          dream: "Ocean library exploration - Lucid Dream",
+          confidence: 87,
+          type: "Lucid Dream"
+        },
+        {
+          id: 3,
+          dream: "Deep sleep memory consolidation",
+          confidence: 73,
+          type: "Deep Sleep"
+        }
+      ]
+    };
+  }
+
+  // Real backend mode
   try {
     const response = await api.get("/history/recent");
     return response;
   } catch (error) {
     console.error('Recent history fetch error:', error);
-    // Return demo data if API fails
-    return {
-      data: [
-        {
-          id: 1,
-          dream: "Recent lucid dream analysis completed",
-          confidence: 89,
-          type: "Lucid Dream"
-        }
-      ]
-    };
+    throw error;
   }
 };
